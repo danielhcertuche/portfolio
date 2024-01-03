@@ -1,6 +1,6 @@
 {
-  "name": "Portfolio",
-  "homepage": "https://danielhcertuche.github.io/Portfolio",
+  "name": "portfolio",
+  "homepage": "https://danielhcertuche.github.io/portfolio",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
