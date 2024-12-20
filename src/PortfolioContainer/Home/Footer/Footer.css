@@ -1,20 +1,14 @@
 .footer-container{
-    height: 17.8%;
+    height: 38.8%;
     width: 100%;
     overflow: hidden;
     display: flex;
     justify-content: center;
-}
-
-.footer-parent{
-    width: 100%;
-    height: 100%;
-    max-width: 1920px;
-}
-
-.footer-parent img{
-    max-width: 100%;
-    height: 130px;
+    margin-right: -0%;
+    margin-left: 0%;
+    margin-bottom: -0%;
+    padding: 0; /* Elimina relleno interno */
+    position: relative;
 }
 
 @media only screen and (max-width: 1110px) {

@@ -1,0 +1,131 @@
+
+.about-container {
+    display: flex;
+    flex-direction: column; /* Título arriba, contenido abajo */
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff; /* Fondo blanco */
+    color: #1D2334; /* Texto gris oscuro */
+    min-height: 12vh; /* Altura completa del viewport */
+}
+
+.about-container h2 {
+    font-size: 2.4rem;
+    color: #1D2334; /* Gris oscuro */
+    font-weight: bold;
+    margin-bottom: 10px; /* Espaciado inferior */
+    text-align: center;
+}
+
+.about-content {
+    padding-left: 3%;
+    padding-right: 3%;
+    display: flex;
+    flex-direction: row; /* Coloca las columnas una al lado de la otra */
+    width: 100%; /* Ocupa todo el ancho */
+}
+
+.about-text {
+    flex: 1.2; /* Ocupa la mitad del espacio */
+    text-align: left; /* Texto alineado a la izquierda */
+    padding: 0 0px; /* Espaciado interno horizontal */
+}
+
+.about-text p {
+   
+    line-height: 1.6;
+    margin: 2px 0 0 3px;
+    font-size: 21px;
+    font-family: "Poppins Light" ;
+    color: #666; /* Texto en gris */
+}
+
+
+.about-text a {
+    color: #f95738; /* Naranja del botón */
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.about-text a:hover {
+    text-decoration: underline;
+}
+
+.about-image {
+    flex: 0.76; /* Ocupa la mitad del espacio */
+    display: flex;
+    justify-content: center; /* Imagen centrada horizontalmente */
+    align-items: center; /* Imagen centrada verticalmente */
+}
+
+.about-image img {
+    background-image: url('../../assets/Home/galaxy-arms-icon-mod.png');
+    border-radius: 10%; /* Imagen redonda */
+    height: 150%;
+    width: 50%;
+    background-size: cover ;
+    border-radius: 0.5%;
+    background-repeat: no-repeat;
+    background-position: center;
+    object-fit: cover; /* Mantiene proporciones */
+}
+
+
+/* Decoración bajo el título */
+.underline {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    position: relative;
+    margin-bottom: 8px;
+
+}
+
+.underline::before,
+.underline::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 2px;
+    background-color:#A9A9A9; 
+
+    margin: 0 0px;
+}
+
+.circle {
+    width: 45px;
+    height: 6px;
+    background-color:  #FF5823; ; /* Naranja */
+    border-radius: 3px; /* Hace los bordes redondeados */
+}
+
+/* Responsividad para pantallas más pequeñas */
+@media screen and (max-width: 768px) {
+
+    .underline::before,
+    .underline::after {
+        width: 40px;
+    }
+
+    .circle {
+        width: 15px;
+        height: 5px;
+    }
+}
+
+/* Responsividad */
+@media screen and (max-width: 768px) {
+    .about-content {
+        flex-direction: column; /* Cambia a diseño vertical */
+    }
+
+    .about-image img {
+        width: 200px; /* Ajusta el tamaño de la imagen en pantallas pequeñas */
+        height: 200px;
+    }
+
+    .about-text {
+        text-align: center; /* Texto centrado en pantallas pequeñas */
+    }
+}

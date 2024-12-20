@@ -1,11 +1,13 @@
 import Home from "../PortfolioContainer/Home/Home";
+import Projects from "../PortfolioContainer/Projects/Projects";
+import About from "../PortfolioContainer/About/About";
+
 
 export const TOTAL_SCREENS = [
-    {
-        screen_name: "HOME",
-        component : Home
-    }
-]
+    { screen_name: "home", component: Home },
+    { screen_name: "about", component: About },
+    { screen_name: "projects", component: Projects }, // Cambiado de 'services' a 'projects'
+];
 
 export const GET_SCREEN_INDEX = (screen_name) => {
     if(!screen_name){

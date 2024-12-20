@@ -1,7 +1,54 @@
 .home-container{
+    margin-top: 50px;
+    padding-left: 3.3vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     min-height: 670px;
+    margin-right: -0%;
+    margin-left: -0%;
+    margin-bottom: -0.002%;
+
+
     background-image: url('../../assets/Home/bg.jpg');
 }
+
+
+
+/* Responsividad */
+@media screen and (max-width: 768px) {
+    .navbar {
+        height: 50px;
+        padding: 0 3px;
+    }
+
+    .profile-picture {
+        width: 150px;
+        height: 150px;
+        margin-top: 10px;
+    }
+
+    .profile-details-role h1 {
+        font-size: 1.6rem;
+    }
+
+    .profile-options .btn {
+        font-size: 0.9rem;
+        padding: 4px 8px;
+    }
+
+
+/* Ajustes para el contenedor principal */
+.home-container {
+    display: flex;
+    margin-left: 0px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 80px; /* Reserva espacio para el navbar */
+    min-height: 18vh; /* Asegura que ocupe toda la pantalla */
+    text-align: center;
+}
+}
+
+

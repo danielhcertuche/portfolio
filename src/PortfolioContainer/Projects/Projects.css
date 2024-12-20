@@ -1,0 +1,183 @@
+.projects-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 30px 20px;
+    background-color: #ffffff; /* Fondo blanco */
+    color: #1D2334; /* Gris oscuro */
+    min-height: 100vh; /* Ocupa toda la altura de la pantalla */
+    text-align: center;
+}
+
+.projects-container h2 {
+    font-size: 2.4rem; /* Tamaño de fuente consistente */
+    color: #1D2334; /* Gris oscuro */
+    font-weight: bold;
+    margin-bottom: 20px; /* Espaciado inferior */
+    text-align: center;
+}
+
+.projects-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espaciado entre los elementos */
+    align-items: center; /* Centrar contenido */
+    width: 100%;
+    max-width: 1200px; /* Limitar el ancho máximo */
+    padding: 0 20px; /* Espaciado interno horizontal */
+}
+
+.project-item {
+    display: flex;
+    flex-direction: column;
+    font-size: 21px;
+    font-family: "Poppins Light" ;
+    width: 100%;
+    padding-left: 3%;
+    padding-right: 3%;
+    text-align: left; /* Alinea el contenido del texto */
+}
+
+
+.project-item h3 {
+    text-align: left;       /* Título centrado */
+    margin-bottom: 20px;      /* Espaciado inferior */
+}
+/* Estilos para el título */
+.project-title {
+   
+    font-weight: bold;
+    color: #1D2334; /* Gris oscuro */
+    margin-top: 10px; /* Elimina márgenes */
+    padding-top: 10px;
+}
+
+.project-item p {
+    text-align: left; /* Alinea solo los párrafos a la izquierda */
+    align-items: left;
+    line-height: 1.6;
+    margin: 2px 0 0 3px;
+    font-size: 21px;
+    font-family: "Poppins Light" ;
+    color: #666; /* Texto en gris */
+}
+
+
+/* Contenedor para el número y título */
+.project-header {
+    padding-top: 10px;
+    display: flex; /* Flexbox para alinear elementos en una fila */
+    align-items: center; /* Centra verticalmente los elementos */
+    gap: 2px; /* Espaciado entre el número y el título */
+}
+
+.projects-container .project-number {
+    background-color: #f95738; /* Naranja similar al botón "Get Resume" */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 2px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.projects-container .project-number:hover {
+    transform: scale(1.2); /* Animación al pasar el mouse */
+    background-color: #d64527; /* Naranja más oscuro */
+}
+
+.circle {
+    width: 50px;
+    height: 5px;
+    background-color: #f95738; /* Naranja del diseño */
+    border-radius: 50px;
+}
+
+.project-link {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #f95738;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+    transition: color 0.3s;
+}
+
+.project-link:hover {
+    color: #1D2334;
+}
+
+
+/* Enlaces en la descripción */
+.project-description a {
+    color: #f95738;
+    font-weight: bold;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.project-description a:hover {
+    text-decoration: underline;
+}
+
+/* Responsividad */
+@media screen and (max-width: 768px) {
+    .projects-content {
+        flex-direction: column;
+        padding: 0 10px;
+    }
+
+    .project-item {
+        padding: 15px;
+    }
+
+    .project-item h3 {
+        font-size: 1.8rem;
+        color: darkorange;
+        margin-bottom: 15px;
+    }
+
+    .project-item p {
+        font-size: 1rem;
+    }
+}
+
+
+.dash-container {
+    padding: 20px; 
+    margin: 20px auto; 
+    padding: 15px;            /* Espaciado interno */
+    width: 100%;              /* Ocupa todo el ancho disponible */
+    max-width: 1200px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    background-color: #f9f9f9; 
+    border-radius: 10px; 
+
+}
+
+
+.dash-container h2 {
+    text-align: left;       /* Título centrado */
+    margin-bottom: 20px;      /* Espaciado inferior */
+}
+
+.dash-title {
+    text-align: left;       /* Título centrado */
+    margin-bottom: 2px;      /* Espaciado inferior */
+}
+
+.dash-container iframe {
+    width: 100%;              /* Ajusta al ancho del contenedor */
+    height: 80vh;             /* 80% del alto de la pantalla */
+    border: none;             /* Sin bordes en el iframe */
+    border-radius: 10px;      /* Bordes redondeados */
+}
+
