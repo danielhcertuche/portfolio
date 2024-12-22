@@ -164,4 +164,5 @@ def update_plot_right(selected_file, x_param, y_param):
 
 # Ejecutar la aplicación
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    from waitress import serve
+    serve(app.server, host="0.0.0.0", port=8050)

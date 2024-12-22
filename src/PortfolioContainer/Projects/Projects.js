@@ -44,7 +44,7 @@ const Projects = ({ screenName }) => {
             <div className="dash-container">
                 <h3 className="dash-title">Galaxy Halo Visualization</h3>
                 <iframe
-                    src="http://127.0.0.1:8050" // Cambia esta URL por la URL en producción si es necesario
+                    src="https://dash-app-ce28.onrender.com/" // URL en producción si es necesario
                     title="Galaxy Halo Visualization"
                     className="dash-iframe"
                 ></iframe>
