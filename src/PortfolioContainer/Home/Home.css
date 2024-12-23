@@ -1,15 +1,11 @@
 .home-container{
     margin-top: 50px;
-    padding-left: 3.3vh;
+    padding-left: 2.3vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 670px;
     margin-right: -0%;
     margin-left: -0%;
-    margin-bottom: -0.002%;
-
-
     background-image: url('../../assets/Home/bg.jpg');
 }
 
@@ -46,7 +42,6 @@
     justify-content: flex-start;
     align-items: center;
     padding-top: 80px; /* Reserva espacio para el navbar */
-    min-height: 18vh; /* Asegura que ocupe toda la pantalla */
     text-align: center;
 }
 }

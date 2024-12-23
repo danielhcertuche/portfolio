@@ -1,6 +1,8 @@
 // About.js
 import React from "react";
 import "./About.css";
+import galaxyImage from '../../assets/Home/galaxy-arms-icon-mod.png';
+
 
 const About = ({ screenName }) => {
     return (
@@ -26,9 +28,7 @@ const About = ({ screenName }) => {
 
                 {/* Columna de imagen */}
                 <div className="about-image">
-                    <img
-                        src="galaxy-arms-icon-mod.png"
-                    />
+                    <img src={galaxyImage} alt="Galaxy Image" />
                 </div>
             </div>
         </div>

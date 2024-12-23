@@ -5,20 +5,20 @@
     justify-content: center;
     height: 10%;
     min-height: fit-content;
-    padding: 2.15%;
-    
+    padding: 1.15%;
 }
 
 .profile-parent{
     /*display: flex;*/
     align-items: center;
-    padding: 0.35%;
-
+    padding: 0.25%;
+    padding-right: 3%;
+    margin-right: 0.25%;
     /*color: aliceblue;*/
 }
 
 .profile-details-name{
-    font-size: 28px;
+    font-size: 36px;
     font-family: "Poppins SemiBold";
 }
 
@@ -29,7 +29,7 @@
 }
 
 .profile-details-role h1{
-    font-size: 30px;
+    font-size: 28px;
     font-family: cursive;
 }
 
@@ -42,9 +42,21 @@
 }
 
 .profile-role-tagline{
-    font-size: 21px;
+    font-size: 24px;
     margin: 5px 0 0 10px;
     font-family: "Poppins Light" ;
+}
+
+.profile-options {
+    padding: 0.50%;
+    padding-top: 2.25%;
+    padding-left: 2.25%;
+    display: flex; /* Activa Flexbox */
+    justify-content: space-between; /* Espaciado entre los botones */
+    align-items: center; /* Centra verticalmente los botones */
+    /* border: 2px dashed black;  Añade un borde visible negro */
+
+
 }
 
 .profile-options .highlighted-btn{
@@ -63,9 +75,10 @@
     justify-content: center;
     box-shadow: 0 1px 0px 0px var(--dark-orange);
     border-radius: 50%;
-    height: 380px;
-    width: 380px;
-    margin: 0 0px 0 100px;
+    height: 360px;
+    width: 60%;
+    max-width:50vh ;
+    margin: 0 0px 0 60px;
 }
 
 .profile-picture-background{
@@ -85,7 +98,7 @@
 
 .colz .colz-icon i{
     color:#1D2334;
-    font-size: 25px;
+    font-size: 24px;
     padding: 12px;
     padding-left: 0px;
 }
@@ -94,82 +107,97 @@
     transform: scale(1.5);
 }
 
-@media screen and (max-width : 1110px){
-    .profile-picture{
-      margin: 0 0px 0 80px;
-    }
-  
-    .profile-details-name{
-      font-size: 18px;
+/* Nivel responsivo 1: Pantallas medianas (entre 1110px y 810px) */
+@media screen and (max-width: 1110px) {
+    .profile-container {
+        flex-direction: column-reverse;
+        margin: 0;
+        padding: 2.15%;
     }
 
-    .profile-role-tagline{
-        font-size: 14px;
-    }
-  
-    .profile-details-role .primary-text{
-      font-size: 14px;
-    }
-  
-    .profile-options .btn{
-      width: 120px;
-      padding: 12px;
-      z-index: 700;
-      font-size: 12px;
-    }
-}
-
-@media screen and (max-width : 910px){
-    .profile-picture{
+    .profile-picture {
         height: 320px;
         width: 320px;
-        margin: 0 0 0 4px;
+        margin: 0 auto;
     }
 
-    .profile-details-role{
-        margin: 0 10px 0 10px;
-    }
-}
-
-@media screen and (max-width : 810px) {
-    .profile-container{
-        flex-direction: column-reverse;
-        margin: 0 0 0 0;
-    }
-    .profile-picture{
-        margin: 0 !important;
+    .profile-details-name {
+        font-size: 22px;
     }
 
-    .colz .colz-icon i{
+    .profile-role-tagline {
         font-size: 16px;
     }
-    .profile-options{
-        display: flex;
-        justify-content: space-between;
+
+    .profile-details-role h1 {
+        font-size: 18px;
     }
 
-    .profile-details{
-        margin: 25px 0 0 0;
-    }
-    
-    .profile-options .highlighted-btn{
-        margin: 0 !important;
+    .colz .colz-icon i {
+        font-size: 20px;
     }
 
-    .profile-options, .profile-details-role{
-        text-align: center;
-        margin: 0 10px 0 10px;
+    .profile-options .btn {
+        width: 140px;
+        padding: 10px;
+        font-size: 14px;
     }
 }
 
-@media screen and (max-width : 375px){
-    .profile-picture{
-        height: 275px;
-        width: 275px;
-        margin-top: -90px;
+/* Nivel responsivo 2: Pantallas pequeñas (máximo 810px) */
+@media screen and (max-width: 810px) {
+    .profile-container {
+        flex-direction: column-reverse;
+        padding: 2.15%;
     }
 
-    .profile-details{
+    .profile-picture {
+        height: 275px;
+        width: 275px;
+        margin: 0 auto;
+    }
+
+    .profile-details {
         width: 90%;
+        text-align: center;
+    }
+
+    .profile-details-name {
+        font-size: 18px;
+    }
+
+    .profile-role-tagline {
+        font-size: 14px;
+    }
+
+    .profile-details-role h1 {
+        font-size: 16px;
+    }
+
+    .colz .colz-icon i {
+        font-size: 16px;
+    }
+
+    .profile-options {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .profile-options .btn {
+        width: 120px;
+        padding: 8px;
+        font-size: 12px;
+    }
+}
+
+
+/* Estilos para pantallas grandes */
+@media screen and (min-width: 1440px) {
+    .profile-picture {
+        height: 320px; /* Incrementa el tamaño */
+        width: 50%; /* Ajusta el ancho */
+        max-width: 35vh; /* Asegura que no se exceda en tamaño */
+        margin: 0 auto; /* Centra horizontalmente */
     }
 }

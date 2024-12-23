@@ -10,7 +10,7 @@
 }
 
 .about-container h2 {
-    font-size: 2.4rem;
+    font-size: 36px;
     color: #1D2334; /* Gris oscuro */
     font-weight: bold;
     margin-bottom: 10px; /* Espaciado inferior */
@@ -18,11 +18,14 @@
 }
 
 .about-content {
+    padding-top: 1.12%;
     padding-left: 3%;
     padding-right: 3%;
     display: flex;
     flex-direction: row; /* Coloca las columnas una al lado de la otra */
     width: 100%; /* Ocupa todo el ancho */
+    border: 2px dashed red; /* Añade un borde visible */
+
 }
 
 .about-text {
@@ -35,7 +38,7 @@
    
     line-height: 1.6;
     margin: 2px 0 0 3px;
-    font-size: 21px;
+    font-size: 24px;
     font-family: "Poppins Light" ;
     color: #666; /* Texto en gris */
 }
@@ -56,17 +59,24 @@
     display: flex;
     justify-content: center; /* Imagen centrada horizontalmente */
     align-items: center; /* Imagen centrada verticalmente */
+    width: 100%; /* Ocupa el 40% del ancho desde el lado derecho */
+    height: 100%; /* Cubre toda la altura */
+    background-image: url('../../assets/Home/galaxy-arms-icon-mod-fondo.png'); /* Imagen del fondo */
+    background-repeat: no-repeat;
+    background-size: 168%; /* Zoom al 150% de la imagen original */
+    opacity: 0.95; /* Añade un efecto de transparencia */
 }
 
 .about-image img {
     background-image: url('../../assets/Home/galaxy-arms-icon-mod.png');
     border-radius: 10%; /* Imagen redonda */
-    height: 150%;
+    height: 70%;
     width: 50%;
-    background-size: cover ;
+    background-size: 10%; /* Zoom al 150% de la imagen original */
     border-radius: 0.5%;
     background-repeat: no-repeat;
     background-position: center;
+    opacity: 0.90; /* Añade un efecto de transparencia */
     object-fit: cover; /* Mantiene proporciones */
 }
 

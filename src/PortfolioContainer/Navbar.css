@@ -2,14 +2,15 @@
     position: fixed;
     top: 0;
     width: 100%;
-    height: 10vh;
+    height: 8vh;
     background-image: url('./../assets/Home/bg.jpg');
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-right: 3.3vh;
-    padding-left: 3.3vh;
+    padding-right: 3.9vh;
+    padding-left: 3.9vh;
     z-index: 1000;
+    box-shadow: 2px 2px 6px 2px grey;
   }
   
   .navbar-logo {
@@ -42,8 +43,60 @@
 
   }
 
+  .menu-toggle {
+    display: none; /* Por defecto está oculto */
+  }
+
   html {
     scroll-behavior: smooth;
+  
 }
 
+/* Responsivo:*/
+@media (max-width: 768px) {
+  .navbar-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 8vh; 
+      right: 0.4rem;
+      background-color: white; /* Fondo limpio */
+      width: 6.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+      z-index: 1000;
+      overflow: hidden; /* Asegura bordes redondeados */
+  }
+
+  .navbar-logo {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--dark-orange);
+  }
+
+  .navbar-links li {
+    padding: 0.35rem 0.6rem; /* Espaciado uniforme */
+    border-bottom: 0.6px solid #f0f0f0; /* Línea divisoria */
+    text-align: center; /* Alinea el texto a la izquierda */
+}
+
+.navbar-links li:last-child {
+    border-bottom: none; /* Sin línea divisoria en el último enlace */
+}
+  .navbar-links.active {
+      display: flex;
+  }
+
+  .menu-toggle {
+      display: flex;
+      font-size: 24px;
+      color: var(--dark-orange);
+      cursor: pointer;
+  }
   
+.menu-toggle {
+  display: flex; 
+}
+  
+
+}
