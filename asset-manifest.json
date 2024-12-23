@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/portfolio/static/css/main.67ca4f9b.css",
-    "main.js": "/portfolio/static/js/main.5757243a.js",
+    "main.css": "/portfolio/static/css/main.3261fbba.css",
+    "main.js": "/portfolio/static/js/main.3cddbc89.js",
     "static/js/787.35dd0f9c.chunk.js": "/portfolio/static/js/787.35dd0f9c.chunk.js",
     "static/media/galaxy-arms-icon-mod.png": "/portfolio/static/media/galaxy-arms-icon-mod.fef691073c803164d034.png",
     "static/media/galaxy-arms-icon-mod-fondo.png": "/portfolio/static/media/galaxy-arms-icon-mod-fondo.ff1085aa6362ff70c27c.png",
@@ -15,12 +15,12 @@
     "static/media/DanielProfile.jpg": "/portfolio/static/media/DanielProfile.c0ea45df3953b8aeb8ea.jpg",
     "static/media/bg.jpg": "/portfolio/static/media/bg.869e34bf1349de8919be.jpg",
     "index.html": "/portfolio/index.html",
-    "main.67ca4f9b.css.map": "/portfolio/static/css/main.67ca4f9b.css.map",
-    "main.5757243a.js.map": "/portfolio/static/js/main.5757243a.js.map",
+    "main.3261fbba.css.map": "/portfolio/static/css/main.3261fbba.css.map",
+    "main.3cddbc89.js.map": "/portfolio/static/js/main.3cddbc89.js.map",
     "787.35dd0f9c.chunk.js.map": "/portfolio/static/js/787.35dd0f9c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.67ca4f9b.css",
-    "static/js/main.5757243a.js"
+    "static/css/main.3261fbba.css",
+    "static/js/main.3cddbc89.js"
   ]
 }
