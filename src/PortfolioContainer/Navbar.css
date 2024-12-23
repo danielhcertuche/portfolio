@@ -1,17 +1,18 @@
 .navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 8vh;
-    background-image: url('./../assets/Home/bg.jpg');
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-right: 3.9vh;
-    padding-left: 3.9vh;
-    z-index: 1000;
-    box-shadow: 2px 2px 6px 2px grey;
-  }
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 8vh;
+  background-image: url('./../assets/Home/bg.jpg');
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 3.9vh;
+  padding-left: 3.9vh;
+  z-index: 1000;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
   
   .navbar-logo {
     font-size: 24px;
@@ -92,11 +93,16 @@
       font-size: 24px;
       color: var(--dark-orange);
       cursor: pointer;
+      transition: transform 0.3s ease;
+
   }
   
 .menu-toggle {
   display: flex; 
 }
   
+.menu-toggle:hover {
+  transform: scale(1.1); /* Efecto de ampliación */
+}
 
 }

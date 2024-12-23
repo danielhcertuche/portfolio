@@ -60,17 +60,26 @@
     margin: 2px 0 0 3px;
     font-size: 21px;
     font-family: "Poppins Light" ;
-    color: #666; /* Texto en gris */
+    color: var(--black);
+    margin-bottom: 1rem; /* Espaciado entre párrafos */
 }
 
 
 /* Contenedor para el número y título */
 .project-header {
+    align-items: center;
+    text-align:center;
     padding-top: 10px;
     display: flex; /* Flexbox para alinear elementos en una fila */
     align-items: center; /* Centra verticalmente los elementos */
     gap: 2px; /* Espaciado entre el número y el título */
 }
+
+.project-header-card {
+    align-items: center;
+    text-align:center;
+}
+
 
 .projects-container .project-number {
     background-color: #f95738; /* Naranja similar al botón "Get Resume" */
@@ -79,7 +88,7 @@
     border-radius: 50%;
     width: 50px;
     height: 50px;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: bold;
     display: flex;
     justify-content: center;
@@ -116,6 +125,42 @@
 }
 
 
+.project-card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    text-align: left;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px; /* Ajusta según tu diseño */
+}
+
+.project-button {
+    background-color: #f95738;
+    color: #ffffff;
+    border: none;
+    border-radius: 2%;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.project-button a {
+    display: flex;
+    color: #ffffff;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;}
+
+.project-button:hover {
+    background-color: #d64527;
+}
+
+
 /* Enlaces en la descripción */
 .project-description a {
     color: #f95738;
@@ -126,6 +171,87 @@
 
 .project-description a:hover {
     text-decoration: underline;
+}
+
+.projects-cards {
+    padding: 2.5%;
+    display: flex;
+    gap: 10px; /* Espaciado entre las tarjetas */
+    flex-wrap: wrap; /* Permitir que las tarjetas se ajusten en varias filas si el espacio es limitado */
+    justify-content: center; 
+    align-items: space-between;
+    margin-top: 20px;
+    width: 100%;
+    height: 30%;
+    text-align: center;
+}
+
+.project-card {
+    text-align: center;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex: 0 0 20%; /* 30% del ancho del contenedor */
+    max-width: 30%; /* Limita el ancho máximo relativo */
+    height: inherit;
+    transition: transform 0.3s ease;
+}
+
+.project-card-large {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 8px;
+    text-align: left;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex: 0 0 70%; /* 70% del ancho del contenedor */
+    max-width: 80%; /* Limita el ancho máximo relativo */
+    max-height: 90%; /* Limita el ancho máximo relativo */
+    transition: transform 0.3s ease;
+
+}
+
+.project-href-a {
+    display: grid; 
+    place-items: center; 
+    height: 100%; 
+    padding: 1.15%;
+}
+
+
+
+.project-card:hover {
+    transform: scale(0.9659); /* Efecto al pasar el cursor */
+}
+
+.project-header {
+    margin-bottom: 10px;
+}
+
+.project-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #1D2334;
+}
+
+.project-description {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+
+
+
+
+.dash-iframe {
+    width: 100%;
+    height: 200px;
+    border: none;
+    border-radius: 8px;
+    margin-top: 10px;
 }
 
 /* Responsividad */
@@ -146,8 +272,42 @@
     }
 
     .project-item p {
-        font-size: 1rem;
+        font-size: 1.19rem;
+        margin-bottom: 0.8rem; /* Espaciado entre párrafos */
+
     }
+
+    /* Contenedor para el número y título */
+    .project-header {
+        padding-top: 5px;
+        display: flex; /* Flexbox para alinear elementos en una fila */
+        align-items: space-between; /* Centra verticalmente los elementos */
+        gap: 8px; /* Espaciado entre el número y el título */
+    }
+
+    .project-header h3 {
+        font-size: 1.4rem;
+        color:  var(--dark-orange);
+        margin-bottom: 15px;
+    }
+
+    .projects-container .project-number {
+        background-color: #f95738; /* Naranja similar al botón "Get Resume" */
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 78px;
+        height: 48px;
+        font-size: 1.4rem;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 2px;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
 }
 
 

@@ -16,13 +16,12 @@ const About = ({ screenName }) => {
                 {/* Columna de texto */}
                 <div className="about-text">
                     <p>
-                        I’m a scientist-in-training, passionate about **data analysis**, **programming**, 
-                        and creating impactful **visualizations**. My work bridges the gap between science 
-                        and technology, making complex data accessible and insightful.
+                        Passionate about <strong>data analysis</strong>, <strong>software development</strong>, and <strong>artificial intelligence</strong>, I work at the crossroads of science and technology, using programming and data visualization to make complex datasets understandable and actionable.
                     </p>
                     <p>
-                        From exploring the cosmos to designing tools for visualization, I enjoy transforming 
-                        raw data into meaningful stories. Curious? <a href="/path-to-your-resume.pdf" download>Download my CV</a>.
+                        Currently, I contribute as a researcher in <strong>Physics and Computational Astrophysics</strong>, exploring data-driven solutions to complex problems. My teaching experience at Cosmo School has honed my ability to approach challenges creatively, blending technical expertise with education to drive meaningful impact.
+                    </p>
+                    <p>
                     </p>
                 </div>
 
@@ -31,6 +30,17 @@ const About = ({ screenName }) => {
                     <img src={galaxyImage} alt="Galaxy Image" />
                 </div>
             </div>
+            
+            <div className='profile-options'>
+                    <a href='DanielCertucheCV.pdf' download='DanielCertuche.pdf'>
+                        <button className='btn highlighted-btn'>
+                            {" "}Get Resume{" "}
+                        </button>
+                    </a>
+                    <button className='btn primary-btn'>
+                        {" "}Hire Me{" "}
+                    </button>
+                </div>
         </div>
     );
 };

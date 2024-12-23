@@ -3,15 +3,15 @@
     align-items: center;
     text-align: center;
     justify-content: center;
-    height: 10%;
+    height: 12%;
     min-height: fit-content;
-    padding: 1.15%;
+    padding: 1.99%;
 }
 
 .profile-parent{
     /*display: flex;*/
     align-items: center;
-    padding: 0.25%;
+    padding: 0.35%;
     padding-right: 3%;
     margin-right: 0.25%;
     /*color: aliceblue;*/
@@ -48,9 +48,9 @@
 }
 
 .profile-options {
-    padding: 0.50%;
+    padding: 0.30%;
     padding-top: 2.25%;
-    padding-left: 2.25%;
+    padding-left: 2.15%;
     display: flex; /* Activa Flexbox */
     justify-content: space-between; /* Espaciado entre los botones */
     align-items: center; /* Centra verticalmente los botones */
@@ -112,21 +112,22 @@
     .profile-container {
         flex-direction: column-reverse;
         margin: 0;
-        padding: 2.15%;
+        padding: 3.05%;
     }
 
     .profile-picture {
         height: 320px;
         width: 320px;
         margin: 0 auto;
+        padding-top:0.5%;
     }
 
     .profile-details-name {
-        font-size: 22px;
+        font-size: 24px;
     }
 
     .profile-role-tagline {
-        font-size: 16px;
+        font-size: 18px;
     }
 
     .profile-details-role h1 {
@@ -140,7 +141,7 @@
     .profile-options .btn {
         width: 140px;
         padding: 10px;
-        font-size: 14px;
+        font-size: 16px;
     }
 }
 
@@ -148,7 +149,7 @@
 @media screen and (max-width: 810px) {
     .profile-container {
         flex-direction: column-reverse;
-        padding: 2.15%;
+        padding-top: 6%;
     }
 
     .profile-picture {
@@ -163,11 +164,11 @@
     }
 
     .profile-details-name {
-        font-size: 18px;
+        font-size: 24px;
     }
 
     .profile-role-tagline {
-        font-size: 14px;
+        font-size: 18px;
     }
 
     .profile-details-role h1 {
@@ -175,10 +176,11 @@
     }
 
     .colz .colz-icon i {
-        font-size: 16px;
+        font-size: 18px;
     }
 
     .profile-options {
+        padding: 1.5%;
         display: flex;
         justify-content: center;
         gap: 10px;
@@ -187,7 +189,7 @@
     .profile-options .btn {
         width: 120px;
         padding: 8px;
-        font-size: 12px;
+        font-size: 16px;
     }
 }
 

@@ -2,11 +2,12 @@
 .about-container {
     display: flex;
     flex-direction: column; /* Título arriba, contenido abajo */
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    align-items: space-between;
     background-color: #ffffff; /* Fondo blanco */
     color: #1D2334; /* Texto gris oscuro */
     min-height: 12vh; /* Altura completa del viewport */
+    /* border: 2px dashed black; Añade un borde visible */
 }
 
 .about-container h2 {
@@ -18,14 +19,15 @@
 }
 
 .about-content {
+    color: var(--black);
     padding-top: 1.12%;
     padding-left: 3%;
     padding-right: 3%;
     display: flex;
     flex-direction: row; /* Coloca las columnas una al lado de la otra */
     width: 100%; /* Ocupa todo el ancho */
-    border: 2px dashed red; /* Añade un borde visible */
-
+    text-align: center; /* Texto centrado en pantallas pequeñas */
+    align-items: center;
 }
 
 .about-text {
@@ -40,7 +42,9 @@
     margin: 2px 0 0 3px;
     font-size: 24px;
     font-family: "Poppins Light" ;
-    color: #666; /* Texto en gris */
+    color: var(--black);
+    margin-bottom: 1rem; /* Espaciado entre párrafos */
+
 }
 
 
@@ -99,7 +103,6 @@
     width: 80px;
     height: 2px;
     background-color:#A9A9A9; 
-
     margin: 0 0px;
 }
 
@@ -109,6 +112,31 @@
     background-color:  #FF5823; ; /* Naranja */
     border-radius: 3px; /* Hace los bordes redondeados */
 }
+
+
+.profile-options {
+    padding: 0.30%;
+    padding-top: 1.25%;
+    padding-left: 2.15%;
+    padding-right: 2.25%;
+    display: flex; /* Activa Flexbox */
+    justify-content: space-between; /* Espaciado entre los botones */
+
+    /* border: 2px dashed black;  Añade un borde visible negro */
+
+
+}
+
+.profile-options .highlighted-btn{
+    margin: 0 0 0 2px;
+}
+
+.profile-options .highlighted-btn:hover{
+    margin: 0 0 0 2px;
+    background-color: cornsilk;
+    color: black;
+}
+
 
 /* Responsividad para pantallas más pequeñas */
 @media screen and (max-width: 768px) {
@@ -128,6 +156,8 @@
 @media screen and (max-width: 768px) {
     .about-content {
         flex-direction: column; /* Cambia a diseño vertical */
+        padding: 2%;
+
     }
 
     .about-image img {
@@ -135,7 +165,59 @@
         height: 200px;
     }
 
-    .about-text {
-        text-align: center; /* Texto centrado en pantallas pequeñas */
+    .about-container h2 {
+        font-size: 28px;
+        color: #1D2334; /* Gris oscuro */
+        font-weight: bold;
+        margin-bottom: 5px; /* Espaciado inferior */
+        text-align: center;
     }
+
+    .about-text {
+        padding: 5%;
+        text-align: left; /* Texto centrado en pantallas pequeñas */
+        font-size: 18px;
+
+    }
+}
+
+
+/* Nivel responsivo 1: Pantallas medianas (entre 1110px y 810px) */
+@media screen and (max-width: 1110px) {
+    .about-content {
+        flex-direction: flex; /* Cambia a diseño vertical */
+        text-align: center; /* Texto centrado en pantallas pequeñas */
+        align-items: center;
+    }
+
+    .about-text p {
+   
+        line-height: 1.6;
+        margin: 2px 0 0 3px;
+        font-size: 18px;
+        font-family: "Poppins Light" ;
+        color: #666; /* Texto en gris */
+    }
+    
+    .about-container h2 {
+        font-size: 28px;
+        color: #1D2334; /* Gris oscuro */
+        font-weight: bold;
+        margin-bottom: 5px; /* Espaciado inferior */
+        text-align: center;
+    }
+
+    .profile-options {
+        padding: 0.30%;
+        padding-top: 1.25%;
+        padding-left: 5.15%;
+        padding-right: 3.25%;
+        display: flex; /* Activa Flexbox */
+        justify-content: space-between; /* Espaciado entre los botones */
+    
+        /* border: 2px dashed black;  Añade un borde visible negro */
+    
+    
+    }
+    
 }

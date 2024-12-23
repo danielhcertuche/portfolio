@@ -1,5 +1,5 @@
 .home-container{
-    margin-top: 50px;
+    margin-top: 1.5%;
     padding-left: 2.3vh;
     display: flex;
     flex-direction: column;
@@ -41,7 +41,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding-top: 80px; /* Reserva espacio para el navbar */
+    padding-top: 50px; /* Reserva espacio para el navbar */
     text-align: center;
 }
 }
