@@ -202,16 +202,30 @@
     transform: scale(0.9659); /* Efecto al pasar el cursor */
 }
 
-.project-header {
-    margin-bottom: 10px;
-    align-items:center;
-    text-align:center;
-}
 
 .project-title {
     font-size: 1.5rem;
     font-weight: bold;
     color: #1D2334;
+}
+.project-header {
+    display: flex; /* Activar Flexbox */
+    height: 100%; /* Ajusta según el diseño */
+}
+
+.project-header-card {
+    display: flex; /* Activar Flexbox */
+    justify-content: center; /* Centrar contenido horizontalmente */
+    align-items: center; /* Centrar contenido verticalmente */
+    text-align: center; /* Asegurar que el texto esté centrado */
+    height: 100%; /* Ajusta según el diseño */
+}
+.project-title-card {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #1D2334;
+    text-align: center; /* Centrar el texto dentro del elemento */
+    margin: 0; /* Eliminar márgenes predeterminados */
 }
 
 .project-description {

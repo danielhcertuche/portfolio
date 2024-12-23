@@ -28,8 +28,8 @@ const Projects = ({ screenName }) => {
             <div className="projects-cards">
                 {/* Tarjeta 1: CoCoA Presentation */}
                 <div className="project-card">
-                    <div className="project-header">
-                        <h3 className="project-title">CoCoA Presentation</h3>
+                    <div className="project-header-card">
+                        <h3 className="project-title-card">CoCoA Presentation</h3>
                     </div>
                     <p className="project-description">
                         Explore the slides for more details.
