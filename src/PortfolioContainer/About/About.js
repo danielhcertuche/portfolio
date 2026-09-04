@@ -27,7 +27,7 @@ const About = ({ screenName }) => {
 
                 {/* Columna de imagen */}
                 <div className="about-image">
-                    <img src={galaxyImage} alt="Galaxy Image" />
+                    <img src={galaxyImage} alt="Face-on spiral galaxy with its arms traced" />
                 </div>
             </div>
             
