@@ -1,0 +1,182 @@
+/* Demo de trazado de brazos. Bloque oscuro a propósito: es una sección de
+   observación y el fondo claro del resto del sitio apaga los puntos. */
+
+.tng-demo {
+  --tng-fondo: #070b16;
+  --tng-panel: #0d1425;
+  --tng-borde: rgba(126, 158, 205, 0.22);
+  --tng-texto: #e6edf9;
+  --tng-suave: #97a8c4;
+  --tng-acento: #ffe066;
+
+  background: radial-gradient(120% 90% at 20% 0%, #12203b 0%, var(--tng-fondo) 62%);
+  color: var(--tng-texto);
+  padding: 72px 24px 40px;
+  scroll-margin-top: 88px;
+}
+
+.tng-head { max-width: 780px; margin: 0 auto 28px; text-align: center; }
+
+.tng-kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  color: var(--tng-acento);
+  margin: 0 0 8px;
+}
+
+.tng-demo h2 { color: var(--tng-texto); margin: 0 0 10px; }
+.tng-demo .underline .circle { background: var(--tng-acento); }
+.tng-lead { color: var(--tng-suave); line-height: 1.65; margin: 16px auto 0; }
+
+/* --- selector de halos --- */
+.tng-halos {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  justify-content: center; margin: 0 auto 22px; max-width: 900px;
+}
+
+.tng-chip {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 2px;
+  padding: 9px 15px; border-radius: 11px; cursor: pointer;
+  background: rgba(19, 30, 54, 0.85);
+  border: 1px solid var(--tng-borde);
+  color: var(--tng-texto);
+  transition: border-color 0.18s ease, transform 0.18s ease, background 0.18s ease;
+}
+.tng-chip:hover { transform: translateY(-2px); border-color: rgba(255, 224, 102, 0.5); }
+.tng-chip.is-active { background: rgba(255, 224, 102, 0.13); border-color: var(--tng-acento); }
+.tng-chip-id { font-weight: 600; font-size: 0.92rem; }
+.tng-chip-rol { font-size: 0.7rem; color: var(--tng-suave); letter-spacing: 0.03em; }
+
+/* --- panel principal --- */
+.tng-panel {
+  display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.85fr);
+  gap: 22px; max-width: 1180px; margin: 0 auto;
+}
+
+.tng-lienzo {
+  position: relative; background: var(--tng-panel);
+  border: 1px solid var(--tng-borde); border-radius: 16px;
+  aspect-ratio: 1 / 1; overflow: hidden;
+}
+.tng-canvas { width: 100%; height: 100%; display: block; }
+
+.tng-cargando {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  color: var(--tng-suave); font-size: 0.9rem;
+}
+
+.tng-leyenda {
+  position: absolute; left: 16px; top: 14px; margin: 0; padding: 0;
+  list-style: none; display: grid; gap: 5px; font-size: 0.76rem;
+  color: var(--tng-suave);
+}
+.tng-leyenda i {
+  display: inline-block; width: 16px; height: 3px; border-radius: 2px;
+  margin-right: 7px; vertical-align: middle;
+}
+
+/* --- lateral --- */
+.tng-lateral { display: flex; flex-direction: column; gap: 16px; }
+
+.tng-pasos { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+
+.tng-paso {
+  width: 100%; display: flex; align-items: center; gap: 11px;
+  padding: 10px 13px; border-radius: 10px; cursor: pointer; text-align: left;
+  background: rgba(19, 30, 54, 0.7);
+  border: 1px solid transparent; color: var(--tng-suave);
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+.tng-paso:hover { background: rgba(30, 46, 79, 0.9); color: var(--tng-texto); }
+.tng-paso.is-done { color: rgba(230, 237, 249, 0.72); }
+.tng-paso.is-active {
+  background: rgba(255, 224, 102, 0.12);
+  border-color: var(--tng-acento); color: var(--tng-texto);
+}
+
+.tng-paso-n {
+  flex: 0 0 24px; height: 24px; border-radius: 50%;
+  display: grid; place-items: center; font-size: 0.76rem; font-weight: 700;
+  background: rgba(126, 158, 205, 0.2);
+}
+.tng-paso.is-active .tng-paso-n { background: var(--tng-acento); color: #10182a; }
+.tng-paso-txt { font-size: 0.9rem; }
+
+.tng-explica {
+  background: var(--tng-panel); border: 1px solid var(--tng-borde);
+  border-radius: 13px; padding: 16px 18px;
+}
+.tng-explica h3 { margin: 0 0 8px; font-size: 1.02rem; color: var(--tng-texto); }
+.tng-explica p { margin: 0; font-size: 0.88rem; line-height: 1.62; color: var(--tng-suave); }
+
+.tng-play {
+  padding: 11px 16px; border-radius: 10px; cursor: pointer; font-weight: 600;
+  background: transparent; border: 1px solid var(--tng-acento); color: var(--tng-acento);
+  transition: background 0.18s ease, color 0.18s ease;
+}
+.tng-play:hover { background: var(--tng-acento); color: #10182a; }
+
+.tng-metricas {
+  background: var(--tng-panel); border: 1px solid var(--tng-borde);
+  border-radius: 13px; padding: 16px 18px;
+}
+.tng-nota { margin: 0 0 12px; font-size: 0.84rem; color: var(--tng-suave); line-height: 1.55; }
+.tng-metricas dl { margin: 0; display: grid; gap: 12px; }
+.tng-metricas dt {
+  font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--tng-suave); margin-bottom: 3px;
+}
+.tng-metricas dd { margin: 0; font-size: 1.28rem; font-weight: 700; color: var(--tng-acento); }
+.tng-metricas dd small {
+  display: block; font-size: 0.72rem; font-weight: 400;
+  color: var(--tng-suave); margin-top: 3px; line-height: 1.45;
+}
+
+/* --- créditos TNG --- */
+.tng-credits {
+  max-width: 1180px; margin: 26px auto 0; padding-top: 18px;
+  border-top: 1px solid var(--tng-borde);
+}
+.tng-credits-fila {
+  display: flex; gap: 18px; align-items: flex-start; justify-content: space-between;
+  flex-wrap: wrap;
+}
+.tng-credits p { margin: 0; font-size: 0.8rem; line-height: 1.6; color: var(--tng-suave); flex: 1 1 460px; }
+.tng-credits a { color: var(--tng-acento); }
+
+.tng-credits-toggle {
+  flex: 0 0 auto; padding: 7px 13px; border-radius: 8px; cursor: pointer;
+  font-size: 0.78rem; background: transparent;
+  border: 1px solid var(--tng-borde); color: var(--tng-suave);
+}
+.tng-credits-toggle:hover { color: var(--tng-texto); border-color: var(--tng-acento); }
+
+.tng-credits-detalle { margin-top: 16px; }
+.tng-credits-intro { margin: 0 0 8px; font-size: 0.78rem; }
+.tng-credits-detalle ol { margin: 0 0 16px; padding-left: 20px; display: grid; gap: 10px; }
+.tng-credits-detalle li { font-size: 0.78rem; line-height: 1.55; color: var(--tng-suave); }
+.tng-credits-motivo {
+  display: block; font-size: 0.67rem; text-transform: uppercase;
+  letter-spacing: 0.07em; color: rgba(255, 224, 102, 0.75); margin-bottom: 2px;
+}
+.tng-credits-detalle a { text-decoration: none; }
+.tng-credits-detalle a:hover { text-decoration: underline; }
+.tng-credits blockquote {
+  margin: 0; padding: 12px 15px; border-left: 2px solid var(--tng-acento);
+  background: rgba(19, 30, 54, 0.6); border-radius: 0 8px 8px 0;
+  font-size: 0.76rem; line-height: 1.6; color: var(--tng-suave);
+}
+
+.tng-demo--error { text-align: center; padding: 60px 24px; }
+
+@media (max-width: 900px) {
+  .tng-panel { grid-template-columns: 1fr; }
+  .tng-lienzo { aspect-ratio: 4 / 3; }
+  .tng-demo { padding: 52px 16px 32px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tng-chip, .tng-paso, .tng-play { transition: none; }
+  .tng-chip:hover { transform: none; }
+}
