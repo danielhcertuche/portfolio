@@ -32,11 +32,13 @@ const Projects = ({ screenName }) => {
                         <h3 className="project-title-card">CoCoA Presentation</h3>
                     </div>
                     <p className="project-description">
-                        Explore the slides for more details.
+                        Morphological characterization of spiral arms in IllustrisTNG50 disc
+                        galaxies and their relation to the host dark matter halo. FACom,
+                        Universidad de Antioquia.
                     </p>
                     
                         <a
-                            href="https://jupyterhd.redclara.net/event/45/contributions/511/attachments/203/348/PONENCIA_COCOA_CERTUCHE%20(UdeA).pdf"
+                            href={`${process.env.PUBLIC_URL}/PonenciaCoCoA_Certuche.pdf`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="project-link"
