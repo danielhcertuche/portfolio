@@ -12,10 +12,10 @@ const BASE = `${process.env.PUBLIC_URL || ""}/demo`;
 const AVANCE_MS = 2600;
 
 const ROL_ETIQUETA = {
-  canonico: "caso canónico",
-  limpio: "disco limpio",
-  dificil: "caso difícil",
-  masivo: "disco masivo",
+  canonico: "reference case",
+  limpio: "clean disc",
+  dificil: "hard case",
+  masivo: "massive disc",
 };
 
 const TngDemo = ({ screenName }) => {
@@ -94,7 +94,7 @@ const TngDemo = ({ screenName }) => {
     return (
       <div id={screenName} className="tng-demo tng-demo--error">
         <h2>Interactive demo</h2>
-        <p>No se pudieron cargar los datos del demo ({error}).</p>
+        <p>The demo data could not be loaded ({error}).</p>
       </div>
     );
   }
@@ -102,19 +102,19 @@ const TngDemo = ({ screenName }) => {
   return (
     <div id={screenName} className="tng-demo">
       <header className="tng-head">
-        <p className="tng-kicker">IllustrisTNG50 · trazado automático de brazos</p>
+        <p className="tng-kicker">IllustrisTNG50 · automated spiral-arm tracing</p>
         <h2>How the spiral arms are found</h2>
         <div className="underline">
           <div className="circle" />
         </div>
         <p className="tng-lead">
-          Cuatro pasos convierten un disco de gas simulado en dos brazos medibles.
-          Todo lo que se ve aquí son salidas reales del análisis, no una recreación.
-          Elige un halo y avanza por las etapas.
+          Five steps turn a simulated gas cloud into two measurable spiral arms.
+          Everything shown here is real output from the analysis, not a recreation.
+          Pick a halo and step through the method.
         </p>
       </header>
 
-      <div className="tng-halos" role="tablist" aria-label="Halos disponibles">
+      <div className="tng-halos" role="tablist" aria-label="Available halos">
         {manifiesto &&
           manifiesto.halos.map((h) => (
             <button
@@ -140,14 +140,14 @@ const TngDemo = ({ screenName }) => {
               reducirMovimiento={reducirMovimiento}
             />
           ) : (
-            <div className="tng-cargando">Cargando halo…</div>
+            <div className="tng-cargando">Loading halo…</div>
           )}
 
           {halo && info.key === "skeleton" && (
             <ul className="tng-leyenda">
-              <li><i style={{ background: "#0cbfae" }} /> Brazo 1</li>
-              <li><i style={{ background: "#ffb703" }} /> Brazo 2</li>
-              <li><i style={{ background: "rgba(200,209,226,.5)" }} /> Segmentos descartados</li>
+              <li><i style={{ background: "#0f8a80" }} /> Arm 1</li>
+              <li><i style={{ background: "#8a4b00" }} /> Arm 2</li>
+              <li><i style={{ background: "rgba(29,35,52,.28)" }} /> Discarded segments</li>
             </ul>
           )}
         </div>
@@ -181,7 +181,7 @@ const TngDemo = ({ screenName }) => {
             onClick={() => setReproduciendo((v) => !v)}
             aria-pressed={reproduciendo}
           >
-            {reproduciendo ? "Pausar recorrido" : "Reproducir las 4 etapas"}
+            {reproduciendo ? "Pause walkthrough" : "Play all five steps"}
           </button>
 
           {meta && (
@@ -193,13 +193,13 @@ const TngDemo = ({ screenName }) => {
                   distintas y no la misma vista repetida. */}
               <ol className="tng-embudo">
                 {[
-                  ["Simulación", meta.conteos.simulacion, `${meta.grosor_z.simulacion} kpc de grosor`],
-                  ["Disco filtrado", meta.conteos.disco, `${meta.grosor_z.disco} kpc de grosor`],
-                  ["Sobredensidades", meta.conteos.sobredensidad, "el patrón espiral"],
+                  ["Simulation", meta.conteos.simulacion, `${meta.grosor_z.simulacion} kpc thick`],
+                  ["Filtered disc", meta.conteos.disco, `${meta.grosor_z.disco} kpc thick`],
+                  ["Overdensities", meta.conteos.sobredensidad, "the spiral pattern"],
                 ].map(([nombre, n, sub], i) => (
                   <li key={nombre} className={i === Math.min(etapa, 2) ? "is-active" : ""}>
                     <span className="tng-embudo-nombre">{nombre}</span>
-                    <strong>{n.toLocaleString("es-CO")}</strong>
+                    <strong>{n.toLocaleString("en-US")}</strong>
                     <small>{sub}</small>
                   </li>
                 ))}
@@ -208,21 +208,21 @@ const TngDemo = ({ screenName }) => {
               <dl>
                 {meta.metricas.pa_abs_mediana != null && (
                   <div>
-                    <dt>Ángulo de enrollamiento |PA|</dt>
+                    <dt>Pitch angle |PA|</dt>
                     <dd>
                       {meta.metricas.pa_abs_mediana}°
-                      <small>mediana de {meta.metricas.pa_n_segmentos} segmentos</small>
+                      <small>median of {meta.metricas.pa_n_segmentos} fitted segments</small>
                     </dd>
                   </div>
                 )}
                 {meta.metricas.ancho_fwhm_mediana != null && (
                   <div>
-                    <dt>Ancho de brazo</dt>
+                    <dt>Arm width</dt>
                     <dd>
                       {meta.metricas.ancho_fwhm_mediana} kpc
                       <small>
-                        mediana del FWHM sobre {meta.metricas.ancho_n_nodos} nodos,
-                        medido en los puntos del grupo
+                        median FWHM over {meta.metricas.ancho_n_nodos} nodes,
+                        measured on the group's own points
                       </small>
                     </dd>
                   </div>

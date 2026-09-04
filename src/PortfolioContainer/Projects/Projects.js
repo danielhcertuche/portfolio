@@ -52,14 +52,16 @@ const Projects = ({ screenName }) => {
                 {/* Tarjeta 2: Galaxy Halo Visualization */}
                 <div className="project-card project-card-large">
                     <div className="project-header-card">
-                        <h3 className="project-title">Galaxy Halo Visualization</h3>
+                        <h3 className="project-title">Galaxy halo explorer</h3>
                     </div>
                     <p className="project-description">
-                        An interactive Dash-based visualization tool to explore the properties of galaxy halos. Dive into the visualization below.
+                        The deep dive behind the demo above: the same five steps with
+                        zoom and hover, an edge-on view of the disc, and free cross-plots
+                        of the gas-cell variables. Data derived from IllustrisTNG50.
                     </p>
                     <iframe
                         src="https://dash-app-ce28.onrender.com/"
-                        title="Galaxy Halo Visualization"
+                        title="Galaxy halo explorer"
                         className="dash-iframe"
                     ></iframe>
 

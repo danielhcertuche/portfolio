@@ -1,19 +1,24 @@
-/* Demo de trazado de brazos. Bloque oscuro a propósito: es una sección de
-   observación y el fondo claro del resto del sitio apaga los puntos. */
+/* Demo de trazado de brazos. La sección va clara, como el resto de la página:
+   el único bloque con fondo propio es el lienzo de la galaxia, un gris suave que
+   separa el gráfico del blanco y le da a los puntos un fondo estable.
+   El gris del lienzo es el mismo del header. Medido sobre el: grupos 3.5:1,
+   brazos 4.5 y 6.6:1, escalas de 3.2 a 11:1. */
 
 .tng-demo {
-  /* Del sitio: #1d2334 su color oscuro, #f95738 el coral de los botones. */
-  --tng-fondo: #12161f;
-  --tng-panel: #1d2334;
-  --tng-borde: rgba(154, 166, 191, 0.22);
-  --tng-texto: #e8ecf5;
-  --tng-suave: #9aa6bf;
-  --tng-acento: #f95738;
-  --tng-sobre-acento: #12161f;
+  --tng-fondo: #ffffff;
+  --tng-panel: #f9f9f9;
+  --tng-lienzo: #d3d3d3;   /* el mismo gris del header (bg.jpg) */
+  --tng-borde: #dddddd;
+  --tng-texto: #1d2334;
+  --tng-suave: #525b6e;
+  --tng-acento: #f95738;        /* coral del sitio: rellenos y marcas */
+  --tng-acento-texto: #b8371d;  /* 5.83:1, para texto y rótulos */
+  --tng-sobre-acento: #1d2334;  /* sobre coral: en blanco solo da 3.26:1 */
 
-  background: radial-gradient(120% 90% at 20% 0%, #232b40 0%, var(--tng-fondo) 62%);
+  background: var(--tng-fondo);
   color: var(--tng-texto);
-  padding: 72px 24px 40px;
+  padding: 72px 24px 48px;
+  border-top: 1px solid var(--tng-borde);
   scroll-margin-top: 88px;
 }
 
@@ -23,7 +28,7 @@
   text-transform: uppercase;
   letter-spacing: 0.14em;
   font-size: 0.72rem;
-  color: var(--tng-acento);
+  color: var(--tng-acento-texto);
   margin: 0 0 8px;
 }
 
@@ -40,13 +45,13 @@
 .tng-chip {
   display: flex; flex-direction: column; align-items: flex-start; gap: 2px;
   padding: 9px 15px; border-radius: 11px; cursor: pointer;
-  background: rgba(29, 35, 52, 0.85);
+  background: var(--tng-panel);
   border: 1px solid var(--tng-borde);
   color: var(--tng-texto);
   transition: border-color 0.18s ease, transform 0.18s ease, background 0.18s ease;
 }
 .tng-chip:hover { transform: translateY(-2px); border-color: rgba(249, 87, 56, 0.5); }
-.tng-chip.is-active { background: rgba(249, 87, 56, 0.13); border-color: var(--tng-acento); }
+.tng-chip.is-active { background: #fff5f2; border-color: var(--tng-acento-texto); }
 .tng-chip-id { font-weight: 600; font-size: 0.92rem; }
 .tng-chip-rol { font-size: 0.7rem; color: var(--tng-suave); letter-spacing: 0.03em; }
 
@@ -56,8 +61,9 @@
   gap: 22px; max-width: 1180px; margin: 0 auto;
 }
 
+/* El único bloque con fondo distinto de la página. */
 .tng-lienzo {
-  position: relative; background: var(--tng-panel);
+  position: relative; background: var(--tng-lienzo);
   border: 1px solid var(--tng-borde); border-radius: 16px;
   aspect-ratio: 1 / 1; overflow: hidden;
 }
@@ -86,21 +92,21 @@
 .tng-paso {
   width: 100%; display: flex; align-items: center; gap: 11px;
   padding: 10px 13px; border-radius: 10px; cursor: pointer; text-align: left;
-  background: rgba(29, 35, 52, 0.7);
+  background: var(--tng-panel);
   border: 1px solid transparent; color: var(--tng-suave);
   transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
 }
 .tng-paso:hover { background: rgba(30, 46, 79, 0.9); color: var(--tng-texto); }
 .tng-paso.is-done { color: rgba(230, 237, 249, 0.72); }
 .tng-paso.is-active {
-  background: rgba(249, 87, 56, 0.12);
+  background: #fff5f2;
   border-color: var(--tng-acento); color: var(--tng-texto);
 }
 
 .tng-paso-n {
   flex: 0 0 24px; height: 24px; border-radius: 50%;
   display: grid; place-items: center; font-size: 0.76rem; font-weight: 700;
-  background: rgba(154, 166, 191, 0.2);
+  background: rgba(29, 35, 52, 0.10);
 }
 .tng-paso.is-active .tng-paso-n { background: var(--tng-acento); color: var(--tng-sobre-acento); }
 .tng-paso-txt { font-size: 0.9rem; }
@@ -114,7 +120,7 @@
 
 .tng-play {
   padding: 11px 16px; border-radius: 10px; cursor: pointer; font-weight: 600;
-  background: transparent; border: 1px solid var(--tng-acento); color: var(--tng-acento);
+  background: transparent; border: 1px solid var(--tng-acento); color: var(--tng-acento-texto);
   transition: background 0.18s ease, color 0.18s ease;
 }
 .tng-play:hover { background: var(--tng-acento); color: var(--tng-sobre-acento); }
@@ -129,7 +135,7 @@
   font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em;
   color: var(--tng-suave); margin-bottom: 3px;
 }
-.tng-metricas dd { margin: 0; font-size: 1.28rem; font-weight: 700; color: var(--tng-acento); }
+.tng-metricas dd { margin: 0; font-size: 1.28rem; font-weight: 700; color: var(--tng-acento-texto); }
 .tng-metricas dd small {
   display: block; font-size: 0.72rem; font-weight: 400;
   color: var(--tng-suave); margin-top: 3px; line-height: 1.45;
@@ -145,14 +151,14 @@
   flex-wrap: wrap;
 }
 .tng-credits p { margin: 0; font-size: 0.8rem; line-height: 1.6; color: var(--tng-suave); flex: 1 1 460px; }
-.tng-credits a { color: var(--tng-acento); }
+.tng-credits a { color: var(--tng-acento-texto); }
 
 .tng-credits-toggle {
   flex: 0 0 auto; padding: 7px 13px; border-radius: 8px; cursor: pointer;
   font-size: 0.78rem; background: transparent;
   border: 1px solid var(--tng-borde); color: var(--tng-suave);
 }
-.tng-credits-toggle:hover { color: var(--tng-texto); border-color: var(--tng-acento); }
+.tng-credits-toggle:hover { color: var(--tng-texto); border-color: var(--tng-acento-texto); }
 
 .tng-credits-detalle { margin-top: 16px; }
 .tng-credits-intro { margin: 0 0 8px; font-size: 0.78rem; }
@@ -165,8 +171,8 @@
 .tng-credits-detalle a { text-decoration: none; }
 .tng-credits-detalle a:hover { text-decoration: underline; }
 .tng-credits blockquote {
-  margin: 0; padding: 12px 15px; border-left: 2px solid var(--tng-acento);
-  background: rgba(29, 35, 52, 0.6); border-radius: 0 8px 8px 0;
+  margin: 0; padding: 12px 15px; border-left: 3px solid var(--tng-acento);
+  background: var(--tng-panel); border-radius: 0 8px 8px 0;
   font-size: 0.76rem; line-height: 1.6; color: var(--tng-suave);
 }
 
@@ -191,19 +197,19 @@
 .tng-embudo li {
   display: grid; grid-template-columns: 1fr auto; align-items: baseline;
   gap: 4px 10px; padding: 8px 11px; border-radius: 9px;
-  background: rgba(29, 35, 52, 0.6);
-  border-left: 3px solid rgba(154, 166, 191, 0.28);
+  background: var(--tng-panel);
+  border-left: 3px solid rgba(29, 35, 52, 0.16);
   transition: border-color 0.2s ease, background 0.2s ease;
 }
 .tng-embudo li.is-active {
   border-left-color: var(--tng-acento);
-  background: rgba(249, 87, 56, 0.09);
+  background: #fff5f2;
 }
 .tng-embudo-nombre { font-size: 0.78rem; color: var(--tng-suave); }
 .tng-embudo strong {
   font-size: 1rem; font-variant-numeric: tabular-nums; color: var(--tng-texto);
 }
-.tng-embudo li.is-active strong { color: var(--tng-acento); }
+.tng-embudo li.is-active strong { color: var(--tng-acento-texto); }
 .tng-embudo small {
   grid-column: 1 / -1; font-size: 0.7rem; color: var(--tng-suave); opacity: 0.85;
 }

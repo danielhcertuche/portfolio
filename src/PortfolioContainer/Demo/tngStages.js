@@ -1,49 +1,49 @@
-// Las cinco etapas del método, en el orden en que se aplican. Siguen el flujo de
-// la ponencia: diapositivas 4 a 7, y el esquema A-B-C-D de la 18.
+// The five steps of the method, in the order they are applied. They follow the
+// flow of the conference talk: slides 4 to 7, and the A-B-C-D outline on slide 18.
 //
-// El texto es lo que lee el visitante: describe qué hace el paso, no cómo está
-// implementado.
+// The copy is what a visitor reads: it says what each step achieves, not how it
+// is implemented.
 //
-// Este demo es público y no tiene interruptor: NO debe explicar cómo se mide el
-// ángulo de enrollamiento (que en el plano (r, θ) el brazo es una recta y que su
-// pendiente da el PA). Ese paso del método aún no está publicado. La explicación
-// completa vive en la app Dash, detrás de TNG_PLANO_POLAR.
+// This demo is public and has no switch: it must NOT explain how the pitch angle
+// is measured (that in the (r, θ) plane an arm becomes a straight line whose
+// slope gives the angle). That step of the method is not published yet. The full
+// explanation lives in the Dash app, behind TNG_PLANO_POLAR.
 
 const STAGES = [
   {
     key: "sim",
-    etiqueta: "Simulación",
-    titulo: "Lo que entrega TNG50",
+    etiqueta: "Simulation",
+    titulo: "What the simulation delivers",
     texto:
-      "Todas las celdas de gas ligadas al subhalo, tal como salen de la simulación. No hay un disco todavía: es una nube gruesa e inclinada, con material que no pertenece al disco. El color es la densidad.",
+      "Every gas cell bound to the subhalo, straight out of IllustrisTNG50. There is no disc yet: a thick, tilted cloud that still holds material the disc does not own. Colour is density.",
   },
   {
     key: "disk",
-    etiqueta: "Filtrado",
-    titulo: "Aislar el disco y ponerlo de frente",
+    etiqueta: "Filtering",
+    titulo: "Isolate the disc and turn it face-on",
     texto:
-      "Inspección visual, agrupamiento por densidad, selección por energía interna y por circularidad de la órbita, y de-proyección a vista frontal. Lo que queda es un disco delgado, y el encuadre se cierra sobre él.",
+      "Density clustering plus cuts on internal energy and orbital circularity, then de-projection to a face-on view. What survives is a thin disc, and the frame closes in on it.",
   },
   {
     key: "contrast",
-    etiqueta: "Contraste Δρ",
-    titulo: "Restar el disco para que aparezca el patrón",
+    etiqueta: "Density contrast",
+    titulo: "Subtract the disc so the pattern shows",
     texto:
-      "Se ajusta un perfil de densidad medio en función del radio y se resta, en escala logarítmica. Lo que queda por encima de ese promedio (Δρ > 0) es sobredensidad: el material que forma la espiral.",
+      "A mean radial density profile is fitted and subtracted in log space. What sits above that average (Δρ > 0) is overdensity: the material that traces the spiral. The rest is disc background.",
   },
   {
     key: "clusters",
-    etiqueta: "Agrupamiento",
-    titulo: "Agrupar lo que va junto",
+    etiqueta: "Clustering",
+    titulo: "Group what belongs together",
     texto:
-      "Sobre las sobredensidades se construye un grafo de vecindad y se recorre por anchura para agrupar los puntos conectados. Cada color es un grupo distinto; los grises quedaron fuera de los principales.",
+      "A neighbourhood graph over the overdensities is traversed breadth-first to collect connected points. Each colour is one group; the grey points fell outside the main ones.",
   },
   {
     key: "skeleton",
-    etiqueta: "Brazos",
-    titulo: "Extraer el camino central y medir",
+    etiqueta: "Arms",
+    titulo: "Extract the ridge and measure it",
     texto:
-      "De cada grupo se extrae el camino de centroides que recorre el brazo. Los dos más largos son los brazos principales. Sobre ellos se mide el ancho y el ángulo de enrollamiento, que es lo que se correlaciona después con las propiedades del halo.",
+      "Each group yields the centroid path that runs along the arm, and the two longest become the principal arms. Width and pitch angle are measured on them: the quantities later correlated against halo properties.",
   },
 ];
 

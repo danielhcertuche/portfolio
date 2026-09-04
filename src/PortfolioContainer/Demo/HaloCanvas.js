@@ -5,6 +5,7 @@ import {
   BACKGROUND_DOT,
   CLUSTER_COLORS,
   MUTED_DOT,
+  SCALE_INK,
   contrastColor,
   densityColor,
 } from "./tngPalette";
@@ -52,9 +53,9 @@ function dibujarPuntos(ctx, proy, etapa, clave, alpha, radio, apagados) {
     for (let i = 0; i < n; i += 1) {
       const g = k[i];
       if (g < 0) {
-        ctx.fillStyle = BACKGROUND_DOT.replace(/[\d.]+\)$/, `${0.18 * alpha})`);
+        ctx.fillStyle = BACKGROUND_DOT.replace(/[\d.]+\)$/, `${0.20 * alpha})`);
       } else if (apagados) {
-        ctx.fillStyle = MUTED_DOT.replace(/[\d.]+\)$/, `${0.34 * alpha})`);
+        ctx.fillStyle = MUTED_DOT.replace(/[\d.]+\)$/, `${0.38 * alpha})`);
       } else {
         ctx.fillStyle =
           CLUSTER_COLORS[g % CLUSTER_COLORS.length] +
@@ -86,18 +87,16 @@ function dibujarBrazos(ctx, proy, skeleton, alpha) {
     }
     ctx.strokeStyle = principal
       ? ARM_COLORS[idx % ARM_COLORS.length]
-      : "rgba(200, 209, 226, 0.42)";
+      : "rgba(29, 35, 52, 0.28)";
     // El brazo 2 va discontinuo: entre los dos colores solo hay 1.32:1 de
     // luminancia, así que el tono no basta como único indicador.
     ctx.setLineDash(principal ? ARM_DASH[idx % ARM_DASH.length] : []);
     ctx.globalAlpha = alpha * (principal ? 1 : 0.6);
-    ctx.lineWidth = principal ? 2.6 : 1.3;
+    ctx.lineWidth = principal ? 3.1 : 1.5;
     ctx.lineJoin = "round";
     ctx.lineCap = "round";
-    if (principal) {
-      ctx.shadowColor = ARM_COLORS[idx % ARM_COLORS.length];
-      ctx.shadowBlur = 12;
-    }
+    // Sin halo de brillo: sobre fondo claro emborrona el trazo en vez de
+    // destacarlo. El grosor y el patrón de guiones ya lo separan del fondo.
     ctx.stroke();
     ctx.setLineDash([]);
     ctx.shadowBlur = 0;
@@ -105,7 +104,7 @@ function dibujarBrazos(ctx, proy, skeleton, alpha) {
     if (principal) {
       for (let i = 0; i < brazo.x.length; i += 1) {
         ctx.beginPath();
-        ctx.arc(proy.px(brazo.x[i]), proy.py(brazo.y[i]), 2.6, 0, Math.PI * 2);
+        ctx.arc(proy.px(brazo.x[i]), proy.py(brazo.y[i]), 3.1, 0, Math.PI * 2);
         ctx.fillStyle = ARM_COLORS[idx % ARM_COLORS.length];
         ctx.fill();
       }
@@ -123,14 +122,14 @@ function dibujarEscala(ctx, proy, ancho, alto, limite) {
   const x0 = ancho - largo - 26;
   const y0 = alto - 26;
 
-  ctx.strokeStyle = "rgba(232, 236, 245, 0.85)";
+  ctx.strokeStyle = SCALE_INK;
   ctx.lineWidth = 2;
   ctx.beginPath();
   ctx.moveTo(x0, y0);
   ctx.lineTo(x0 + largo, y0);
   ctx.stroke();
 
-  ctx.fillStyle = "rgba(232, 236, 245, 0.85)";
+  ctx.fillStyle = SCALE_INK;
   ctx.font = "12px system-ui, sans-serif";
   ctx.textAlign = "center";
   ctx.fillText(`${kpc} kpc`, x0 + largo / 2, y0 - 8);
@@ -196,7 +195,9 @@ const HaloCanvas = ({ halo, etapaIndex, etapas, reducirMovimiento }) => {
       );
 
       const proy = proyeccion(ancho, alto, limite);
-      const radio = ancho < 520 ? 1.6 : 2.1;
+      // Un punto de 2 px se pierde al proyectar; se sube sin llegar a empastar
+      // el disco, que en las etapas 1 y 2 trae miles de celdas.
+      const radio = ancho < 520 ? 2.0 : 2.7;
       const datos = halo.etapas;
       const fDesde = fondoDe(claveDesde);
       const fHasta = fondoDe(claveHasta);
