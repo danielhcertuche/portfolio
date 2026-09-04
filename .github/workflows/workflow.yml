@@ -4,24 +4,51 @@ on:
   push:
     branches:
       - master
+  # Permite relanzar el despliegue sin tener que inventar un commit.
+  workflow_dispatch:
+
+# Dos despliegues simultaneos se pisan al empujar a gh-pages.
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [15.x]
-    
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v4
 
-      - name: Install and build
-        run: npm install --force --legacy-peer-deps && npm run build
+      # La version de Node se fija aqui. Antes no se fijaba en ninguna parte: el
+      # "15.x" del nombre del job venia de una matriz decorativa, sin setup-node,
+      # asi que el build corria con lo que trajera el runner ese dia. 22 es la
+      # misma version con la que se valida en local.
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      # npm ci instala exactamente lo que dice package-lock.json. El anterior
+      # `npm install --force` resolvia las dependencias de nuevo en cada corrida:
+      # por esa deriva empezaron a aparecer reglas de ESLint que antes no estaban
+      # y el despliegue quedo roto desde diciembre de 2024 sin que nadie lo notara.
+      - name: Install
+        run: npm ci --legacy-peer-deps
+
+      # CI=true ya viene puesto por Actions, y create-react-app convierte cada
+      # warning en error. Se deja explicito para que se lea en el propio archivo.
+      - name: Build
+        run: npm run build
+        env:
+          CI: true
 
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4.2.3
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages # The branch the action should deploy to.
-          folder: build # The folder the action should deploy
+          branch: gh-pages
+          folder: build
