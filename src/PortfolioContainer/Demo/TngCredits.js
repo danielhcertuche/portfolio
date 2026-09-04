@@ -46,8 +46,7 @@ const TngCredits = () => {
           </a>
           , de acceso público. Análisis propio dentro del Grupo de Física y Astrofísica
           Computacional (FACom), Instituto de Física, Universidad de Antioquia. La idea
-          original y el método de trazado de brazos son de Juan Carlos Muñoz-Cuartas; este
-          trabajo los implementa, extiende y valida.
+          original y el método de trazado de brazos son de Juan Carlos Muñoz-Cuartas.
         </p>
         <button
           className="tng-credits-toggle"

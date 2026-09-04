@@ -238,12 +238,30 @@
 
 
 
+/* La altura importa: 200px no alcanzaban ni para la cabecera de la app, cuyos
+   graficos ocupan 58vh — el visitante solo veia barras de scroll. El marco
+   delimita la herramienta embebida, que ahora comparte la paleta de la pagina. */
 .dash-iframe {
     width: 100%;
-    height: 200px;
-    border: none;
-    border-radius: 8px;
-    margin-top: 10px;
+    height: 720px;
+    min-height: 420px;
+    border: 1px solid #dddddd;
+    border-radius: 12px;
+    margin-top: 14px;
+    /* La app embebida es clara, como esta pagina: el fondo de reserva va a juego
+       para que el iframe no parpadee en otro color mientras Render despierta la
+       instancia en el plan gratuito. */
+    background: #ffffff;
+    box-shadow: 0 8px 24px rgba(29, 35, 52, 0.10);
+    display: block;
+}
+
+@media screen and (max-width: 900px) {
+    .dash-iframe { height: 560px; }
+}
+
+@media screen and (max-width: 520px) {
+    .dash-iframe { height: 460px; border-radius: 9px; }
 }
 
 /* Responsividad */

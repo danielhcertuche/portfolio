@@ -145,9 +145,9 @@ const TngDemo = ({ screenName }) => {
 
           {halo && info.key === "skeleton" && (
             <ul className="tng-leyenda">
-              <li><i style={{ background: "#ffe066" }} /> Brazo 1</li>
-              <li><i style={{ background: "#ff8787" }} /> Brazo 2</li>
-              <li><i style={{ background: "rgba(200,214,235,.55)" }} /> Segmentos descartados</li>
+              <li><i style={{ background: "#0cbfae" }} /> Brazo 1</li>
+              <li><i style={{ background: "#ffb703" }} /> Brazo 2</li>
+              <li><i style={{ background: "rgba(200,209,226,.5)" }} /> Segmentos descartados</li>
             </ul>
           )}
         </div>
@@ -187,11 +187,25 @@ const TngDemo = ({ screenName }) => {
           {meta && (
             <div className="tng-metricas">
               <p className="tng-nota">{meta.nota}</p>
+
+              {/* El embudo: cuántas celdas sobreviven a cada paso. Es la forma más
+                  directa de mostrar que las tres primeras etapas son poblaciones
+                  distintas y no la misma vista repetida. */}
+              <ol className="tng-embudo">
+                {[
+                  ["Simulación", meta.conteos.simulacion, `${meta.grosor_z.simulacion} kpc de grosor`],
+                  ["Disco filtrado", meta.conteos.disco, `${meta.grosor_z.disco} kpc de grosor`],
+                  ["Sobredensidades", meta.conteos.sobredensidad, "el patrón espiral"],
+                ].map(([nombre, n, sub], i) => (
+                  <li key={nombre} className={i === Math.min(etapa, 2) ? "is-active" : ""}>
+                    <span className="tng-embudo-nombre">{nombre}</span>
+                    <strong>{n.toLocaleString("es-CO")}</strong>
+                    <small>{sub}</small>
+                  </li>
+                ))}
+              </ol>
+
               <dl>
-                <div>
-                  <dt>Celdas de gas en el disco</dt>
-                  <dd>{meta.n_particulas_disco.toLocaleString("es-CO")}</dd>
-                </div>
                 {meta.metricas.pa_abs_mediana != null && (
                   <div>
                     <dt>Ángulo de enrollamiento |PA|</dt>

@@ -1,24 +1,30 @@
 import React, { useEffect, useRef } from "react";
 import {
   ARM_COLORS,
+  ARM_DASH,
   BACKGROUND_DOT,
   CLUSTER_COLORS,
+  MUTED_DOT,
   contrastColor,
   densityColor,
 } from "./tngPalette";
 
-// Dibuja una etapa del halo sobre un canvas. Se hace a mano y no con una
-// librería de gráficos porque son ~9.000 puntos por etapa: el canvas los pinta
-// en un frame y evita sumar 3 MB de dependencia a un sitio que debe abrir rápido.
+// Dibuja una etapa del halo sobre un canvas. Se hace a mano y no con una librería
+// de gráficos porque son ~9.000 puntos por etapa: el canvas los pinta en un frame
+// y evita sumar 3 MB de dependencia a un sitio que debe abrir rápido.
 //
-// La transición entre etapas es un cruce de opacidad: la etapa saliente se apaga
-// mientras la entrante aparece, así se ve que es el MISMO disco en otro paso.
+// Dos cosas se interpolan entre etapas, y las dos importan:
+//   opacidad  la etapa saliente se apaga mientras la entrante aparece, así se ve
+//             que es el MISMO objeto en otro paso del método.
+//   encuadre  cada etapa trae su propio límite en kpc. El salto de la simulación
+//             al disco filtrado es de decenas de kpc a poco más de diez, y animar
+//             ese zoom es lo que hace visible qué recorta el filtrado.
 
-const DURACION_MS = 520;
+const DURACION_MS = 640;
+const CON_PUNTOS = { sim: 1, disk: 1, contrast: 1, clusters: 1 };
 
-function crearProyeccion(ancho, alto, limite) {
-  const lado = Math.min(ancho, alto);
-  const escala = (lado / 2) * 0.92 / limite;
+function proyeccion(ancho, alto, limite) {
+  const escala = (Math.min(ancho, alto) / 2) * 0.92 / limite;
   return {
     px: (x) => ancho / 2 + x * escala,
     py: (y) => alto / 2 - y * escala,
@@ -26,7 +32,17 @@ function crearProyeccion(ancho, alto, limite) {
   };
 }
 
-function dibujarPuntos(ctx, proy, etapa, clave, alpha, radio) {
+// Qué nube de puntos sirve de fondo a cada etapa. El esqueleto se dibuja sobre
+// los grupos: el visitante debe ver de dónde salió, no un trazo en el vacío.
+function fondoDe(clave) {
+  return clave === "skeleton" ? "clusters" : clave;
+}
+
+// Con `apagados`, los grupos se pintan todos del mismo gris. Es lo que se usa en
+// la etapa de brazos: ahí el sujeto es el camino central, y dejar los grupos a todo
+// color compite con él. Peor aún: el rojo de un grupo y el del brazo 2 son casi el
+// mismo tono, así que el trazo se perdía justo encima de los puntos.
+function dibujarPuntos(ctx, proy, etapa, clave, alpha, radio, apagados) {
   if (!etapa || alpha <= 0.01) return;
   const { x, y } = etapa;
   const n = x.length;
@@ -34,21 +50,25 @@ function dibujarPuntos(ctx, proy, etapa, clave, alpha, radio) {
   if (clave === "clusters") {
     const k = etapa.k;
     for (let i = 0; i < n; i += 1) {
-      const grupo = k[i];
-      ctx.fillStyle =
-        grupo < 0
-          ? BACKGROUND_DOT.replace(/[\d.]+\)$/, `${0.25 * alpha})`)
-          : CLUSTER_COLORS[grupo % CLUSTER_COLORS.length] +
-            Math.round(alpha * 235).toString(16).padStart(2, "0");
+      const g = k[i];
+      if (g < 0) {
+        ctx.fillStyle = BACKGROUND_DOT.replace(/[\d.]+\)$/, `${0.18 * alpha})`);
+      } else if (apagados) {
+        ctx.fillStyle = MUTED_DOT.replace(/[\d.]+\)$/, `${0.34 * alpha})`);
+      } else {
+        ctx.fillStyle =
+          CLUSTER_COLORS[g % CLUSTER_COLORS.length] +
+          Math.round(alpha * 235).toString(16).padStart(2, "0");
+      }
       ctx.fillRect(proy.px(x[i]), proy.py(y[i]), radio, radio);
     }
     return;
   }
 
   const c = etapa.c;
-  const escalaColor = clave === "contrast" ? contrastColor : densityColor;
+  const color = clave === "contrast" ? contrastColor : densityColor;
   for (let i = 0; i < n; i += 1) {
-    ctx.fillStyle = escalaColor(c[i], alpha * 0.85);
+    ctx.fillStyle = color(c[i], alpha * 0.85);
     ctx.fillRect(proy.px(x[i]), proy.py(y[i]), radio, radio);
   }
 }
@@ -66,7 +86,10 @@ function dibujarBrazos(ctx, proy, skeleton, alpha) {
     }
     ctx.strokeStyle = principal
       ? ARM_COLORS[idx % ARM_COLORS.length]
-      : "rgba(200, 214, 235, 0.45)";
+      : "rgba(200, 209, 226, 0.42)";
+    // El brazo 2 va discontinuo: entre los dos colores solo hay 1.32:1 de
+    // luminancia, así que el tono no basta como único indicador.
+    ctx.setLineDash(principal ? ARM_DASH[idx % ARM_DASH.length] : []);
     ctx.globalAlpha = alpha * (principal ? 1 : 0.6);
     ctx.lineWidth = principal ? 2.6 : 1.3;
     ctx.lineJoin = "round";
@@ -76,6 +99,7 @@ function dibujarBrazos(ctx, proy, skeleton, alpha) {
       ctx.shadowBlur = 12;
     }
     ctx.stroke();
+    ctx.setLineDash([]);
     ctx.shadowBlur = 0;
 
     if (principal) {
@@ -91,7 +115,7 @@ function dibujarBrazos(ctx, proy, skeleton, alpha) {
 }
 
 function dibujarEscala(ctx, proy, ancho, alto, limite) {
-  // Barra de escala: un demo sin unidades no dice nada.
+  // Un demo sin unidades no dice nada, y aquí la escala cambia entre etapas.
   const objetivo = limite / 3;
   const paso = Math.pow(10, Math.floor(Math.log10(objetivo)));
   const kpc = [1, 2, 5, 10].map((m) => m * paso).find((v) => v >= objetivo) || paso;
@@ -99,14 +123,14 @@ function dibujarEscala(ctx, proy, ancho, alto, limite) {
   const x0 = ancho - largo - 26;
   const y0 = alto - 26;
 
-  ctx.strokeStyle = "rgba(226, 236, 250, 0.85)";
+  ctx.strokeStyle = "rgba(232, 236, 245, 0.85)";
   ctx.lineWidth = 2;
   ctx.beginPath();
   ctx.moveTo(x0, y0);
   ctx.lineTo(x0 + largo, y0);
   ctx.stroke();
 
-  ctx.fillStyle = "rgba(226, 236, 250, 0.85)";
+  ctx.fillStyle = "rgba(232, 236, 245, 0.85)";
   ctx.font = "12px system-ui, sans-serif";
   ctx.textAlign = "center";
   ctx.fillText(`${kpc} kpc`, x0 + largo / 2, y0 - 8);
@@ -118,13 +142,13 @@ const HaloCanvas = ({ halo, etapaIndex, etapas, reducirMovimiento }) => {
   const animRef = useRef(null);
   const estadoRef = useRef({ desde: etapaIndex, hasta: etapaIndex, t: 1 });
 
-  // Nuevo destino de animación cuando cambia la etapa o el halo.
   useEffect(() => {
     const st = estadoRef.current;
     if (st.hasta === etapaIndex) return;
     st.desde = st.hasta;
     st.hasta = etapaIndex;
     st.t = reducirMovimiento ? 1 : 0;
+    st.inicio = null;
   }, [etapaIndex, reducirMovimiento]);
 
   useEffect(() => {
@@ -136,15 +160,19 @@ const HaloCanvas = ({ halo, etapaIndex, etapas, reducirMovimiento }) => {
     const canvas = canvasRef.current;
     if (!canvas || !halo) return undefined;
     const ctx = canvas.getContext("2d");
-    let inicio = null;
+
+    const limiteDe = (clave) => {
+      const et = halo.etapas[fondoDe(clave)];
+      return (et && et.limite) || halo.limite_kpc;
+    };
 
     const render = (ts) => {
       const st = estadoRef.current;
       if (st.t < 1) {
-        if (inicio === null) inicio = ts;
-        st.t = Math.min(1, (ts - inicio) / DURACION_MS);
+        if (!st.inicio) st.inicio = ts;
+        st.t = Math.min(1, (ts - st.inicio) / DURACION_MS);
       }
-      const suave = st.t < 1 ? st.t * st.t * (3 - 2 * st.t) : 1; // smoothstep
+      const s = st.t < 1 ? st.t * st.t * (3 - 2 * st.t) : 1; // smoothstep
 
       const dpr = window.devicePixelRatio || 1;
       const ancho = canvas.clientWidth;
@@ -156,33 +184,42 @@ const HaloCanvas = ({ halo, etapaIndex, etapas, reducirMovimiento }) => {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, ancho, alto);
 
-      const proy = crearProyeccion(ancho, alto, halo.limite_kpc);
-      const radio = ancho < 520 ? 1.6 : 2.1;
-
       const claveDesde = etapas[st.desde].key;
       const claveHasta = etapas[st.hasta].key;
-      const datos = halo.etapas;
 
-      // La etapa de brazos se dibuja sobre los clusters: el visitante debe ver
-      // de dónde salió el esqueleto, no un trazo flotando en el vacío.
-      const fondoHasta = claveHasta === "skeleton" ? "clusters" : claveHasta;
-      const fondoDesde = claveDesde === "skeleton" ? "clusters" : claveDesde;
-
-      if (st.t < 1 && fondoDesde !== fondoHasta) {
-        dibujarPuntos(ctx, proy, datos[fondoDesde], fondoDesde, 1 - suave, radio);
-      }
-      dibujarPuntos(
-        ctx, proy, datos[fondoHasta], fondoHasta,
-        fondoDesde === fondoHasta ? 1 : suave, radio
+      // El encuadre se interpola en logaritmo: el salto de la simulación al disco
+      // puede ser de un orden de magnitud, y en lineal el zoom se ve a tirones.
+      const lDesde = limiteDe(claveDesde);
+      const lHasta = limiteDe(claveHasta);
+      const limite = Math.exp(
+        Math.log(lDesde) + (Math.log(lHasta) - Math.log(lDesde)) * s
       );
 
+      const proy = proyeccion(ancho, alto, limite);
+      const radio = ancho < 520 ? 1.6 : 2.1;
+      const datos = halo.etapas;
+      const fDesde = fondoDe(claveDesde);
+      const fHasta = fondoDe(claveHasta);
+
+      // Los grupos se apagan cuando la etapa mostrada es la del esqueleto. Durante
+      // la transición cada lado usa el suyo, así el color se desvanece con el paso.
+      const apDesde = claveDesde === "skeleton";
+      const apHasta = claveHasta === "skeleton";
+
+      if (st.t < 1 && CON_PUNTOS[fDesde] && (fDesde !== fHasta || apDesde !== apHasta)) {
+        dibujarPuntos(ctx, proy, datos[fDesde], fDesde, 1 - s, radio, apDesde);
+      }
+      if (CON_PUNTOS[fHasta]) {
+        const solo = fDesde === fHasta && apDesde === apHasta;
+        dibujarPuntos(ctx, proy, datos[fHasta], fHasta, solo ? 1 : s, radio, apHasta);
+      }
+
       const alphaBrazos =
-        (claveHasta === "skeleton" ? suave : 0) +
-        (claveDesde === "skeleton" && st.t < 1 ? 1 - suave : 0);
+        (claveHasta === "skeleton" ? s : 0) +
+        (claveDesde === "skeleton" && st.t < 1 ? 1 - s : 0);
       dibujarBrazos(ctx, proy, datos.skeleton, Math.min(1, alphaBrazos));
 
-      dibujarEscala(ctx, proy, ancho, alto, halo.limite_kpc);
-
+      dibujarEscala(ctx, proy, ancho, alto, limite);
       animRef.current = requestAnimationFrame(render);
     };
 
@@ -197,7 +234,7 @@ const HaloCanvas = ({ halo, etapaIndex, etapas, reducirMovimiento }) => {
       role="img"
       aria-label={
         halo
-          ? `${halo.nombre}, etapa ${etapas[etapaIndex].etiqueta}: ${etapas[etapaIndex].titulo}`
+          ? `${halo.nombre}, paso ${etapaIndex + 1} de ${etapas.length}: ${etapas[etapaIndex].titulo}`
           : "Cargando halo"
       }
     />

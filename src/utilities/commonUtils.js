@@ -1,11 +1,13 @@
 import Home from "../PortfolioContainer/Home/Home";
 import Projects from "../PortfolioContainer/Projects/Projects";
 import About from "../PortfolioContainer/About/About";
+import TngDemo from "../PortfolioContainer/Demo/TngDemo";
 
 
 export const TOTAL_SCREENS = [
     { screen_name: "home", component: Home },
     { screen_name: "about", component: About },
+    { screen_name: "demo", component: TngDemo },
     { screen_name: "projects", component: Projects }, // Cambiado de 'services' a 'projects'
 ];
 

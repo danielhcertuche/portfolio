@@ -41,6 +41,11 @@ const Navbar = () => {
                     </a>
                 </li>
                 <li>
+                    <a href="#demo" onClick={(e) => handleScroll(e, "demo")}>
+                        Demo
+                    </a>
+                </li>
+                <li>
                     <a href="#projects" onClick={(e) => handleScroll(e, "projects")}>
                         Projects
                     </a>
