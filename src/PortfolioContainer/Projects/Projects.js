@@ -89,8 +89,8 @@ const Projects = ({ screenName }) => {
                         parsed by document type into structured facts and indexed as
                         embeddings, customers profiled from purchase behaviour, and an
                         answer written per segment that cites the passages it used.
-                        Retrieval is measured rather than claimed, and the queries that
-                        still fail are kept and explained.
+                        Retrieval is evaluated on a fixed query set at each version,
+                        with the remaining failures documented.
                     </p>
 
                         <a

@@ -45,7 +45,7 @@ export const projects = [
   {
     id: "inteligencia-comercial-rag",
     title: "Commercial intelligence over a public e-commerce dataset",
-    summary: "Three chained components over a public Brazilian e-commerce dataset. Product, customer and analytical PDFs are parsed by document type into structured facts, chunked and indexed as embeddings; a customer profile is built from purchase behaviour and segmented; and the answer is written per segment, citing the passages it used. Retrieval is measured, not claimed: 83 per cent hit at one over twelve queries, with the two failures kept and explained as the limit of lexical matching. It runs without credentials, on a deterministic fallback that says so in its own output.",
+    summary: "Three chained components over a public Brazilian e-commerce dataset. Product, customer and analytical PDFs are parsed by document type into structured facts, chunked and indexed as embeddings; a customer profile is built from purchase behaviour and segmented; and the answer is written per segment, citing the passages it used. Retrieval is evaluated on a fixed query set at each version, reaching 83 per cent hit at one, and the two remaining failures are documented as the limit of lexical matching. The full walkthrough runs without credentials, on a deterministic fallback that the output labels as such.",
     repo: "commercial-intelligence-rag",
     href: "https://github.com/danielhcertuche/commercial-intelligence-rag",
     status: "vivo",
