@@ -78,6 +78,33 @@ const Projects = ({ screenName }) => {
                         </a>
                     </div>
                 </div>
+
+                {/* Tarjeta 3: proyecto de industria */}
+                <div className="project-card">
+                    <div className="project-header-card">
+                        <h3 className="project-title-card">Commercial intelligence over public e-commerce data</h3>
+                    </div>
+                    <p className="project-description">
+                        Three chained components on a public e-commerce dataset: PDFs
+                        parsed by document type into structured facts and indexed as
+                        embeddings, customers profiled from purchase behaviour, and an
+                        answer written per segment that cites the passages it used.
+                        Retrieval is measured rather than claimed, and the queries that
+                        still fail are kept and explained.
+                    </p>
+
+                        <a
+                            href="https://github.com/danielhcertuche/commercial-intelligence-rag"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="project-link"
+                            aria-label="Open the commercial intelligence repository on GitHub"
+                        >
+                            <button className='btn primary-btn' title="Open repository">
+                                <ExternalLinkIcon />
+                            </button>
+                        </a>
+                </div>
             </div>
         </div>
     );
