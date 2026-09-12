@@ -20,7 +20,7 @@ const Projects = ({ screenName }) => {
                     My thesis explores the relationship between spiral arm morphology and dark matter halo properties in disk galaxies simulated with IllustrisTNG. Using advanced techniques, I analyzed gas density, arm widths, and pitch angles to understand their connections with hosting halo structures.
                 </p>
                 <p>
-                    Findings reveal systematic variations in arm width with distance to the galactic center and correlations between pitch angles and the central velocity dispersion of subhalos. These results contribute to understanding the transient nature of spiral arms and their ties to halo evolution.
+                    The analysis found tentative trends between arm morphology and galaxy or halo properties. These relationships remain exploratory and motivate broader samples, revised width measurements, and comparison with observations.
                 </p>
             </div>
 
@@ -29,12 +29,12 @@ const Projects = ({ screenName }) => {
                 {/* Tarjeta 1: CoCoA Presentation */}
                 <div className="project-card">
                     <div className="project-header-card">
-                        <h3 className="project-title-card">CoCoA Presentation</h3>
+                        <h3 className="project-title-card">Spiral Arms and Dark Matter Halos</h3>
                     </div>
                     <p className="project-description">
-                        Morphological characterization of spiral arms in IllustrisTNG50 disc
-                        galaxies and their relation to the host dark matter halo. FACom,
-                        Universidad de Antioquia.
+                        A visual, English-language account of how we extracted spiral arms
+                        from IllustrisTNG50 disk galaxies, measured their morphology, and
+                        tested tentative links with host dark matter halos.
                     </p>
                     
                         <a
@@ -42,8 +42,9 @@ const Projects = ({ screenName }) => {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="project-link"
+                            aria-label="Open the spiral-arm research presentation as a PDF"
                         >
-                            <button className='btn primary-btn'> 
+                            <button className='btn primary-btn' title="Open presentation PDF"> 
                                 <ExternalLinkIcon />                   
                             </button>
                         </a>
