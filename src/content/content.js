@@ -48,7 +48,7 @@ export const projects = [
     summary: "Three chained components over a public Brazilian e-commerce dataset. Product, customer and analytical PDFs are parsed by document type into structured facts, chunked and indexed as embeddings; a customer profile is built from purchase behaviour and segmented; and the answer is written per segment, citing the passages it used. Retrieval is measured, not claimed: 83 per cent hit at one over twelve queries, with the two failures kept and explained as the limit of lexical matching. It runs without credentials, on a deterministic fallback that says so in its own output.",
     repo: "commercial-intelligence-rag",
     href: "https://github.com/danielhcertuche/commercial-intelligence-rag",
-    status: "pendiente-verificar",
+    status: "vivo",
     featured: true,
   },
   {
